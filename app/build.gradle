@@ -7,6 +7,10 @@ android {
     namespace 'com.alvaropv13.apppokemon'
     compileSdk 36
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.alvaropv13.apppokemon"
         minSdk 24
@@ -32,7 +36,12 @@ android {
     }
 }
 
+def navVersion = "2.9.5"
+
 dependencies {
+
+    implementation("androidx.navigation:navigation-fragment:$navVersion")
+    implementation("androidx.navigation:navigation-ui:$navVersion")
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
