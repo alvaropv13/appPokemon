@@ -14,4 +14,9 @@ class PokemonViewModel : ViewModel() {
     init {
         pokemons.value = repository.getPokemon()
     }
+
+    fun eliminarPokemon(posicion: Int) {
+        repository.eliminarPokemon(posicion)
+        pokemons.value = repository.getPokemon()
+    }
 }
