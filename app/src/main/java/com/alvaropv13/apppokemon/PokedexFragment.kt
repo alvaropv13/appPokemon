@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +32,12 @@ class PokedexFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(PokemonViewModel::class.java)
 
-        adapter = PokemonAdapter(emptyList())
+        adapter = PokemonAdapter(emptyList()) { pokemon ->
+            viewModel.seleccionarPokemon(pokemon)
+            findNavController().navigate(
+                R.id.action_pokedexFragment_to_detailsFragment
+            )
+        }
 
         val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerview.layoutManager = GridLayoutManager(requireContext(), 2)

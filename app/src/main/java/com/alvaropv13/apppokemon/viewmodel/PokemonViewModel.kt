@@ -19,4 +19,10 @@ class PokemonViewModel : ViewModel() {
         repository.eliminarPokemon(posicion)
         pokemons.value = repository.getPokemon()
     }
+
+    val pokemonSeleccionado: MutableLiveData<Pokemon> = MutableLiveData()
+
+    fun seleccionarPokemon(pokemon: Pokemon) {
+        pokemonSeleccionado.value = pokemon
+    }
 }

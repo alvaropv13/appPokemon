@@ -10,7 +10,8 @@ import com.alvaropv13.apppokemon.R
 import com.alvaropv13.apppokemon.model.Pokemon
 
 class PokemonAdapter(
-    private var lista: List<Pokemon>
+    private var lista: List<Pokemon>,
+    private val onClick: (Pokemon) -> Unit
 ) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
     inner class PokemonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,6 +29,9 @@ class PokemonAdapter(
         val pokemon = lista[position]
         holder.nombre.text = pokemon.nombre
         holder.imagen.setImageResource(pokemon.imagen)
+        holder.itemView.setOnClickListener {
+            onClick(pokemon)
+        }
     }
 
     override fun getItemCount(): Int = lista.size
