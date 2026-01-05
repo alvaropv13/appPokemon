@@ -25,4 +25,16 @@ class PokemonViewModel : ViewModel() {
     fun seleccionarPokemon(pokemon: Pokemon) {
         pokemonSeleccionado.value = pokemon
     }
+
+    fun cambiarFavorito(posicion: Int) {
+        val pokemon = pokemons.value?.get(posicion) ?: return
+
+        if (pokemon.favorito) {
+            repository.desmarcarFavorito(posicion)
+        } else {
+            repository.marcarFavorito(posicion)
+        }
+
+        pokemons.value = repository.getPokemon()
+    }
 }

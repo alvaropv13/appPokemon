@@ -23,4 +23,16 @@ class PokemonRepository {
     fun eliminarPokemon(posicion: Int) {
         listaPokemon.removeAt(posicion)
     }
+
+    fun marcarFavorito(posicion: Int) {
+        listaPokemon[posicion].favorito = true
+    }
+
+    fun desmarcarFavorito(posicion: Int) {
+        listaPokemon[posicion].favorito = false
+    }
+
+    fun getFavoritos(): List<Pokemon> {
+        return listaPokemon.filter { it.favorito }
+    }
 }

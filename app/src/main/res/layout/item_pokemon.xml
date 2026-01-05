@@ -5,25 +5,38 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/ivPokemon"
-            android:layout_width="120dp"
-            android:layout_height="120dp" />
+            android:id="@+id/ivFavorito"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/estrella_borde" />
 
-        <TextView
-            android:id="@+id/tvNombre"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
 
+            <ImageView
+                android:id="@+id/ivPokemon"
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
+
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

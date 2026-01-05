@@ -32,12 +32,18 @@ class PokedexFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(PokemonViewModel::class.java)
 
-        adapter = PokemonAdapter(emptyList()) { pokemon ->
-            viewModel.seleccionarPokemon(pokemon)
-            findNavController().navigate(
-                R.id.action_pokedexFragment_to_detailsFragment
-            )
-        }
+        adapter = PokemonAdapter(
+            emptyList(),
+            onClick = { pokemon ->
+                viewModel.seleccionarPokemon(pokemon)
+                findNavController().navigate(
+                    R.id.action_pokedexFragment_to_detailsFragment
+                )
+            },
+            onFavoritoClick = { posicion ->
+                viewModel.cambiarFavorito(posicion)
+            }
+        )
 
         val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerview.layoutManager = GridLayoutManager(requireContext(), 2)

@@ -8,15 +8,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alvaropv13.apppokemon.R
 import com.alvaropv13.apppokemon.model.Pokemon
+import kotlin.contracts.InvocationKind
 
 class PokemonAdapter(
     private var lista: List<Pokemon>,
-    private val onClick: (Pokemon) -> Unit
+    private val onClick: (Pokemon) -> Unit,
+    private val onFavoritoClick: (Int) -> Unit
 ) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
     inner class PokemonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imagen: ImageView = view.findViewById(R.id.ivPokemon)
         val nombre: TextView = view.findViewById(R.id.tvNombre)
+        val favorito: ImageView = view.findViewById(R.id.ivFavorito)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
@@ -29,6 +32,18 @@ class PokemonAdapter(
         val pokemon = lista[position]
         holder.nombre.text = pokemon.nombre
         holder.imagen.setImageResource(pokemon.imagen)
+
+        val icono = if (pokemon.favorito) {
+            R.drawable.estrella
+        } else{
+            R.drawable.estrella_borde
+        }
+        holder.favorito.setImageResource(icono)
+
+        holder.favorito.setOnClickListener {
+            onFavoritoClick(position)
+        }
+
         holder.itemView.setOnClickListener {
             onClick(pokemon)
         }
