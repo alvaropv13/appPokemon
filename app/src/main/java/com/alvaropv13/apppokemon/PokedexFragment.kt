@@ -2,6 +2,7 @@ package com.alvaropv13.apppokemon
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alvaropv13.apppokemon.adapter.PokemonAdapter
 import com.alvaropv13.apppokemon.viewmodel.PokemonViewModel
+import android.view.MenuInflater
+import androidx.appcompat.widget.SearchView
+
 
 
 class PokedexFragment : Fragment() {
@@ -71,6 +75,19 @@ class PokedexFragment : Fragment() {
         }
 
         ItemTouchHelper(swipeHandler).attachToRecyclerView(recyclerview)
+
+        val searchView = view.findViewById<SearchView>(R.id.searchView)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.filtrarPokemons(newText.orEmpty())
+                return true
+            }
+        })
 
     }
 

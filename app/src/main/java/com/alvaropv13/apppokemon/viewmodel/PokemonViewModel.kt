@@ -37,4 +37,20 @@ class PokemonViewModel : ViewModel() {
 
         pokemons.value = repository.getPokemon()
     }
+
+    fun obtenerFavoritos() {
+        pokemons.value = repository.getFavoritos()
+    }
+
+
+    fun filtrarPokemons(texto: String) {
+        if (texto.isEmpty()) {
+            pokemons.value = repository.getPokemon()
+        } else {
+            pokemons.value = repository.getPokemon().filter {
+                it.nombre.contains(texto, ignoreCase = true)
+            }
+        }
+    }
+
 }
