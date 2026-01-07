@@ -39,12 +39,14 @@ class PokedexFragment : Fragment() {
         adapter = PokemonAdapter(
             emptyList(),
             onClick = { pokemon ->
+                // Se guarda el pokemon seleccionado y navega al detalle
                 viewModel.seleccionarPokemon(pokemon)
                 findNavController().navigate(
                     R.id.action_pokedexFragment_to_detailsFragment
                 )
             },
             onFavoritoClick = { posicion ->
+                // Marcar o desmarcar el pokemon como favorito
                 viewModel.cambiarFavorito(posicion)
             }
         )
@@ -57,6 +59,7 @@ class PokedexFragment : Fragment() {
             lista -> adapter.actualizarLista(lista)
         }
 
+        // Gesto de swipe para eliminar pokémon
         val swipeHandler = object : ItemTouchHelper.SimpleCallback (
            0,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -76,6 +79,7 @@ class PokedexFragment : Fragment() {
 
         ItemTouchHelper(swipeHandler).attachToRecyclerView(recyclerview)
 
+        // Barra de búsqueda para filtrar pokémon por nombre
         val searchView = view.findViewById<SearchView>(R.id.searchView)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

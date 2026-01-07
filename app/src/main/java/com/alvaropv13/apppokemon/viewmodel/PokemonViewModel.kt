@@ -42,12 +42,25 @@ class PokemonViewModel : ViewModel() {
         pokemons.value = repository.getFavoritos()
     }
 
-
+    // Filtra los Pokemon por nombre
     fun filtrarPokemons(texto: String) {
         if (texto.isEmpty()) {
             pokemons.value = repository.getPokemon()
         } else {
             pokemons.value = repository.getPokemon().filter {
+                it.nombre.contains(texto, ignoreCase = true)
+            }
+        }
+    }
+
+    // // Filtra únicamente los Pokémon marcados como favoritos
+    fun filtrarFavoritos(texto: String) {
+        val favoritos = repository.getFavoritos()
+
+        if (texto.isEmpty()) {
+            pokemons.value = favoritos
+        } else {
+            pokemons.value = favoritos.filter {
                 it.nombre.contains(texto, ignoreCase = true)
             }
         }

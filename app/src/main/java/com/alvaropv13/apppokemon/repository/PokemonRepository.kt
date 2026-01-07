@@ -16,6 +16,7 @@ class PokemonRepository {
             Pokemon("Squirtle", R.drawable.squirtle, "Pokemon de agua")
             )
 
+    // Devuelve todos los Pokémon
     fun getPokemon(): List<Pokemon> {
         return listaPokemon
     }
@@ -24,6 +25,7 @@ class PokemonRepository {
         listaPokemon.removeAt(posicion)
     }
 
+    // Marca un Pokémon como favorito
     fun marcarFavorito(posicion: Int) {
         listaPokemon[posicion].favorito = true
     }
@@ -32,6 +34,7 @@ class PokemonRepository {
         listaPokemon[posicion].favorito = false
     }
 
+    // Devuelve solo los Pokémon favoritos
     fun getFavoritos(): List<Pokemon> {
         return listaPokemon.filter { it.favorito }
     }
