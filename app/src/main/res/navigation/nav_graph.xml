@@ -12,6 +12,10 @@
         tools:layout="@layout/fragment_pokedex">
 
         <action
+            android:id="@+id/action_pokedexFragment_to_favPokemonFragment"
+            app:destination="@id/favPokemonFragment" />
+
+        <action
             android:id="@+id/action_pokedexFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
@@ -21,4 +25,15 @@
         android:name="com.alvaropv13.apppokemon.DetailsFragment"
         android:label="Details"
         tools:layout="@layout/fragment_details"/>
+
+    <fragment
+        android:id="@+id/favPokemonFragment"
+        android:name="com.alvaropv13.apppokemon.FavPokemonFragment"
+        tools:layout="@layout/fragment_fav_pokemon"
+        android:label="Favoritos">
+        <action
+            android:id="@+id/action_favPokemonFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
 </navigation>
